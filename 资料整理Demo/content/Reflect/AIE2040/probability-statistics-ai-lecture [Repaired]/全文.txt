@@ -1,0 +1,1308 @@
+[s1-p000] PROBABILITY AND STATISTICS
+[s1-p001] IN ARTIFICIAL INTELLIGENCE
+[s1-p002] Understanding Uncertainty in AI
+[s1-p003] Instructor Lecture Deck  •  Undergraduate AI / CS Curriculum
+[s2-p000] OPENING
+[s2-p001] Why Probability Matters inAI
+[s2-p002] • AI systems almost never have complete, noise-       free information.
+[s2-p003] •  Inputs are noisy, models are imperfect, and              future events or labels are uncertain.
+[s2-p004] •  So AI cannot only produce an answer -- it must       also express how confident it is.
+[s2-p005] • AI does not only predict. AI must also reason     under uncertainty.
+[s2-p006] Input
+[s2-p007] (image)
+[s2-p008] AI Model
+[s2-p009] Prediction +    Uncertainty
+[s2-p010] Cat: 0.75
+[s2-p011] Dog: 0.20
+[s2-p012] Other: 0.05
+[s3-p000] Unsupervised
+[s3-p001] Learning
+[s3-p002] Modeling the
+[s3-p003] population distribution
+[s3-p004] Reinforcement
+[s3-p005] Learning
+[s3-p006] Uncertain transitions     and returns
+[s3-p007] Supervised Learning
+[s3-p008] Uncertainty in
+[s3-p009] predicting y from x
+[s3-p010] Generative AI
+[s3-p011] Distributions over        possible outputs
+[s3-p012] Probability Across AI
+[s3-p013] OPENING
+[s4-p000] 02
+[s4-p001] Probability Distributions
+[s4-p002] 05
+[s4-p003] Practical AI Applications
+[s4-p004] 04
+[s4-p005] Probabilistic Models in AI
+[s4-p006] 01
+[s4-p007] Probability Foundations
+[s4-p008] 03
+[s4-p009] Statistical Inference
+[s4-p010] From axioms and distributions, to estimating parameters, to probabilistic AI models, to real systems.
+[s4-p011] Suggested 3-lecture split: Lecture 1 = Slides 1-23   |  Lecture 2 = Slides 24-50   |  Lecture 3 = Slides 51-70   |  Appendix (71-77) optional
+[s4-p012] Chapter Roadmap
+[s4-p013] OPENING
+[s5-p000] 01
+[s5-p001] Probability Foundations
+[s5-p002] Axioms, random variables, conditional probability, Bayes, LLN & CLT, entropy
+[s6-p000] PART  I  -  FOUNDATIONS
+[s6-p001] The Axioms of Probability
+[s6-p002] •  Sample space Ω: the set of every possible          outcome.
+[s6-p003] •  Event A: any subset of Ω we care about.
+[s6-p004] •  P(A): the probability assigned to event A.
+[s6-p005] •  Kolmogorov's three axioms (1933):
+[s6-p006] •  Non-negativity: P(A) ≥ 0
+[s6-p007] •  Normalization: P(Ω) = 1
+[s6-p008] •  Countable additivity: disjoint events add up
+[s6-p009] 0
+[s6-p010] 1                 2                 3                 4                 5                 6
+[s6-p011] 0.17              0.17              0.17              0.17              0.17              0.17
+[s6-p012] 0.25
+[s6-p013] 0.2
+[s6-p014] 0.15
+[s6-p015] 0.1
+[s6-p016] 0.05
+[s6-p017] Die-Roll Example
+[s6-p018] Ω = {1,2,3,4,5,6}
+[s6-p019] A = “even” = {2,4,6}
+[s6-p020] P(A) = 3/6 = 0.5
+[s6-p021] Fair-Die Outcome Probabilities
+[s7-p000] Overlap region A∩B is double-counted if we simply add
+[s7-p001] P(A) + P(B).
+[s7-p002] A                          A∩B                              B
+[s7-p003] •  Complement Ac: everything in Ω that is NOT in A.
+[s7-p004] •  P(Ac) = 1 - P(A)
+[s7-p005] •  Union A ∪ B: A or B (or both) happens.
+[s7-p006] •  Intersection A∩B: both A and B happen.
+[s7-p007] •  P(A∪B) = P(A) + P(B) - P(A∩B)
+[s7-p008] • We subtract the overlap because it was            counted twice.
+[s7-p009] Set Operations & Probability Rules
+[s7-p010] PART  I  -  FOUNDATIONS
+[s8-p000] • A random outcome is not the same thing as a  random variable.
+[s8-p001] • A random variable X maps outcomes to
+[s8-p002] numbers, e.g. X = the number shown on a die.
+[s8-p003] •  Uppercase X denotes the variable; lowercase x denotes a realized value.
+[s8-p004] •  Discrete X: finite / countable values
+[s8-p005] •  e.g. clicks, error count, class label
+[s8-p006] •  Continuous X: values fill an interval
+[s8-p007] •  e.g. height, response time, temperature, latency
+[s8-p008] Continuous
+[s8-p009] 1                   2                   3                   4                   5                   6
+[s8-p010] Discrete
+[s8-p011] Random Variables
+[s8-p012] PART  I  -  FOUNDATIONS
+[s9-p000] •  Discrete X: probability mass function P(X = x)  gives probability directly.
+[s9-p001] •  Continuous X: density fX(x); probability = AREA under the curve, not the height.
+[s9-p002] •  For continuous X, P(X = x) = 0 exactly!
+[s9-p003] •  Probability only accumulates over an interval:
+[s9-p004] •  P(a ≤ X ≤ b) = ∫ₐ ᵇ fX(x) dx
+[s9-p005] •  CDF: FX(x) = P(X ≤ x), the accumulated              probability up to x.
+[s9-p006] -3.0
+[s9-p007] -2.8
+[s9-p008] -2.6
+[s9-p009] -2.4
+[s9-p010] -2.2
+[s9-p011] -2.0
+[s9-p012] - 1.8
+[s9-p013] - 1.6
+[s9-p014] - 1.4
+[s9-p015] - 1.2
+[s9-p016] - 1.0
+[s9-p017] -0.8
+[s9-p018] -0.6
+[s9-p019] -0.4
+[s9-p020] -0.2
+[s9-p021] 0.0
+[s9-p022] 0.2
+[s9-p023] 0.4
+[s9-p024] 0.6
+[s9-p025] 0.8
+[s9-p026] 1.0
+[s9-p027] 1.2
+[s9-p028] 1.4
+[s9-p029] 1.6
+[s9-p030] 1.8
+[s9-p031] 2.0
+[s9-p032] 2.2
+[s9-p033] 2.4
+[s9-p034] 2.6
+[s9-p035] 2.8
+[s9-p036] 3.0
+[s9-p037] a b
+[s9-p038] Classic misconception: a tall density value does NOT       mean high probability at that exact point -- a single         point always has probability zero for continuous
+[s9-p039] variables.
+[s9-p040] PMF, PDF, and CDF
+[s9-p041] PART  I  -  FOUNDATIONS
+[s9-p042] Area = Probability (shaded region between a and b)
+[s10-p000] Expectation & Variance
+[s10-p001] •  Expectation E[X]: the long-run average value of X.
+[s10-p002] •  E[X] = Σₓ x P(X=x)  (discrete)      E[X] = ∫ x fX(x) dx         (continuous)
+[s10-p003] • Variance Var(X): how spread out X is around its mean.
+[s10-p004] •  Var(X) = E[(X - E[X])²]
+[s10-p005] • Standard deviation = √Var(X); larger σ means more fluctuation.
+[s10-p006] 	σ = 1 (low spread)              σ = 2 (high spread)
+[s10-p007] Both curves are centered at μ = 0, but the wider curve
+[s10-p008] represents a more uncertain / noisier variable.
+[s10-p009] PART  I  -  FOUNDATIONS
+[s10-p010] -4.0
+[s10-p011] -3.7
+[s10-p012] -3.4
+[s10-p013] -3.1
+[s10-p014] -2.8
+[s10-p015] -2.5
+[s10-p016] -2.2
+[s10-p017] -1.9
+[s10-p018] -1.6
+[s10-p019] -1.3
+[s10-p020] -1.0
+[s10-p021] -0.7
+[s10-p022] -0.4
+[s10-p023] -0.1
+[s10-p024] Same Mean, Different Variance
+[s10-p025] 0.2
+[s10-p026] 0.5
+[s10-p027] 0.8
+[s10-p028] 1.1
+[s10-p029] 1.4
+[s10-p030] 1.7
+[s10-p031] 2.0
+[s10-p032] 2.3
+[s10-p033] 2.6
+[s10-p034] 2.9
+[s10-p035] 3.2
+[s10-p036] 3.5
+[s10-p037] 3.8
+[s11-p000] • A and B are independent if knowing A occurred tells us nothing new about B.
+[s11-p001] • P(A∩B) = P(A) × P(B)
+[s11-p002] •  For random variables: P(X=x, Y=y) = P(X=x)        P(Y=y) for all x, y.
+[s11-p003] •  Independence is a strong MODELING
+[s11-p004] assumption, not automatically true.
+[s11-p005] •  AI connection: Naive Bayes assumes features are     conditionally independent given the class.
+[s11-p006] •  Real-world variables are often dependent -- e.g.       words in a sentence, pixels in an image.
+[s11-p007] Naive Bayes ASSUMES these are
+[s11-p008] independent given the class -- in
+[s11-p009] reality they often co-occur.
+[s11-p010] Word: “free”        in an email
+[s11-p011] Word: “win”       in same email
+[s11-p012] Coin flip
+[s11-p013] result
+[s11-p014] Die roll
+[s11-p015] result
+[s11-p016] Independent:
+[s11-p017] knowing the coin tells you
+[s11-p018] nothing about the die
+[s11-p019] Independence
+[s11-p020] PART  I  -  FOUNDATIONS
+[s12-p000] •  Question: given that B happened, what is the probability of A now?
+[s12-p001] •  Intuition: restrict the world to only the
+[s12-p002] outcomes where B is true, then ask about A   inside that smaller world.
+[s12-p003] • P(A|B) = P(A∩B) / P(B)      for P(B) > 0
+[s12-p004] •  If A and B are independent, P(A|B) = P(A) --  conditioning changes nothing.
+[s12-p005] •  Otherwise, the condition carries real               information about A.
+[s12-p006] P(A|B) asks: within the shaded B-region, how much ofit is
+[s12-p007] also A?
+[s12-p008] B
+[s12-p009] (the new world)
+[s12-p010] A
+[s12-p011] Conditional Probability: Intuition
+[s12-p012] PART  I  -  FOUNDATIONS
+[s13-p000] Worked Example: Conditional Probability
+[s13-p001] •  Problem: Roll a fair die. Let A = “result is even”, B = “result is ≥ 4” . Find P(A|B).
+[s13-p002] •  Step 1: List outcomes.  A = {2,4,6},  B = {4,5,6}
+[s13-p003] •  Step 2: Find A∩B = {4,6}, so P(A∩B) = 2/6
+[s13-p004] •  Step 3: P(B) = 3/6
+[s13-p005] •  Step 4: P(A|B) = P(A∩B)/P(B) = (2/6)/(3/6) = 2/3
+[s13-p006] •  Interpretation: once we know the roll is ≥ 4, the chance it is also even rises from 1/2 to 2/3.
+[s13-p007] PART  I  -  FOUNDATIONS
+[s14-p000] •  If B1,...,Bn partition the sample space completely and exclusively,
+[s14-p001] •  P(A) = Σᵢ P(A|Bᵢ) P(Bᵢ)
+[s14-p002] •  The total probability is a weighted average across all background cases.
+[s14-p003] •  Population disease example:
+[s14-p004] P(disease) = 0.05(0.5)+0.15(0.3)+0.30(0.2) = 0.107
+[s14-p005] Overall prevalence in the population is 10.7% -- a weighted blend across subgroups.
+[s14-p006] Law of Total Probability
+[s14-p007] Population
+[s14-p008] Young
+[s14-p009] 50%
+[s14-p010] P(disease)= 5%
+[s14-p011] Older
+[s14-p012] 20%
+[s14-p013] P(disease)=
+[s14-p014] 30%
+[s14-p015] Middle
+[s14-p016] 30%
+[s14-p017] P(disease)=
+[s14-p018] 15%
+[s14-p019] PART  I  -  FOUNDATIONS
+[s15-p000] THINK  -  PAIR  -  SHARE
+[s15-p001] A medical test has 90% sensitivity.
+[s15-p002] Does a positive test mean the patient has a 90% probability of disease?
+[s15-p003] Discuss with a partner for 60 seconds.
+[s15-p004] We will answer this rigorously with Bayes' theorem in the next few slides.
+[s16-p000] • P(A|B) = P(B|A) P(A) / P(B)
+[s16-p001] •  P(A): prior -- belief before seeing evidence
+[s16-p002] •  P(B|A): likelihood -- probability of the evidence if A is true
+[s16-p003] •  P(A|B): posterior -- updated belief after seeing evidence
+[s16-p004] •  P(B): evidence -- overall probability of the         observation
+[s16-p005] • posterior α prior × likelihood
+[s16-p006] Used in: naive Bayes classification, medical diagnosis       updating, spam filtering from words, information
+[s16-p007] retrieval.
+[s16-p008] P(A|B) = P(B|A)P(A) / P(B)
+[s16-p009] Derived directly from the product rule P(A∩B) =
+[s16-p010] P(A|B)P(B) = P(B|A)P(A).
+[s16-p011] Bayes' Theorem
+[s16-p012] PART  I  -  FOUNDATIONS
+[s17-p000] Prior
+[s17-p001] New Evidence
+[s17-p002] Likelihood
+[s17-p003] Bayesian
+[s17-p004] Update
+[s17-p005] Posterior
+[s17-p006] Posterior ∝ Prior × Likelihood
+[s17-p007] New evidence reshapes what we believed before -- the posterior becomes the new starting point for the next update.
+[s17-p008] The Bayesian Updating Flow
+[s17-p009] PART  I  -  FOUNDATIONS
+[s18-p000] Worked Example: Medical Diagnosis (Bayes)
+[s18-p001] •  Problem: Disease prevalence P(disease) = 0.01. Test sensitivity P(+|disease) = 0.90. False-positive rate P(+|no disease) = 0.05. Given a POSITIVE test, find P(disease|+).
+[s18-p002] •  Step 1 - Prior: P(disease) = 0.01, P(no disease) = 0.99
+[s18-p003] •  Step 2 - Likelihoods: P(+|disease) = 0.90,  P(+|no disease) = 0.05
+[s18-p004] •  Step 3 - Evidence: P(+) = 0.90(0.01) + 0.05(0.99) = 0.0585
+[s18-p005] •  Step 4 - Posterior: P(disease|+) = 0.90(0.01) / 0.0585 ≈ 15.4%
+[s18-p006] •  Interpretation: a positive result does NOT imply high disease probability, because the prior prevalence is low and false positives are common relative to true cases.
+[s18-p007] PART  I  -  FOUNDATIONS
+[s19-p000] 9,900 no disease  (99%)
+[s19-p001] 495 false positive (5% false-pos rate)
+[s19-p002] 9,405 true negative
+[s19-p003] 100 have disease (1%)
+[s19-p004] 90 true positive (90% sensitivity)
+[s19-p005] 10 false negative
+[s19-p006] Total positive = 90 + 495 = 585
+[s19-p007] P(disease|+) = 90/585 ≈ 15.4%
+[s19-p008] 10,000 people
+[s19-p009] Common Misconception
+[s19-p010] “Positive test = 90% probability of disease.” This        confuses P(+|disease) = 0.90 (the sensitivity)
+[s19-p011] with P(disease|+) (the posterior).
+[s19-p012] Among the 585 people who test positive, only 90      actually have the disease -- the other 495 are
+[s19-p013] false alarms from the huge healthy population.
+[s19-p014] Answers Think-Pair-Share #1: a 90%-sensitive           test on a rare disease can still yield a low
+[s19-p015] posterior probability.
+[s19-p016] Seeing It in Frequencies: 10,000 People
+[s19-p017] PART  I  -  FOUNDATIONS
+[s20-p000] Law of Large Numbers
+[s20-p001] •  Question: if we repeat a random trial many times, what happens to the average?
+[s20-p002] •  For i.i.d. random variables with finite mean μ,   • X̄ ₙ → μ as n → ∞ (almost surely)
+[s20-p003] •  Illustrated with repeated fair coin tosses:
+[s20-p004] •  Individual outcomes remain random.
+[s20-p005] •  But averages become stable.
+[s20-p006] 0.51
+[s20-p007] 10000
+[s20-p008] 0.49
+[s20-p009] 1000
+[s20-p010] 0.52
+[s20-p011] 100
+[s20-p012] 1
+[s20-p013] 0.9
+[s20-p014] 0.8
+[s20-p015] 0.7
+[s20-p016] 0.6
+[s20-p017] 0.5
+[s20-p018] 0.4
+[s20-p019] 0.3
+[s20-p020] 0.2
+[s20-p021] 0.1
+[s20-p022] 0
+[s20-p023] 0.40
+[s20-p024] 10
+[s20-p025] As n grows from 10 to 10,000 tosses, the fraction of heads
+[s20-p026] settles near 0.5.
+[s20-p027] PART  I  -  FOUNDATIONS
+[s20-p028] Observed Fraction of Heads vs. n
+[s21-p000] • Take i.i.d. samples from a distribution with finite mean and variance.
+[s21-p001] •  Compute the sample mean, repeat the
+[s21-p002] sampling process many times, and standardize   the sample mean.
+[s21-p003] • As the sample size grows, the standardized         sample mean approaches a Normal(0,1)
+[s21-p004] distribution.
+[s21-p005] •  Illustrated below for three very different source distributions.
+[s21-p006] Uniform(0,1)
+[s21-p007] Bernoulli(p=0.3)
+[s21-p008] Exponential(1)
+[s21-p009] Central Limit Theorem: Intuition
+[s21-p010] n =
+[s21-p011] 1,2,5,10,30,100   sample means
+[s21-p012] n =
+[s21-p013] 1,2,5,10,30,100   sample means
+[s21-p014] n =
+[s21-p015] 1,2,5,10,30,100   sample means
+[s21-p016] →
+[s21-p017] Normal(0,1)
+[s21-p018] →
+[s21-p019] Normal(0,1)
+[s21-p020] →
+[s21-p021] Normal(0,1)
+[s21-p022] PART  I  -  FOUNDATIONS
+[s22-p000] •  Zn = (1/(σ√ n)) Σᵢ (Xi - μ)  ⇒  Normal(0,1)
+[s22-p001] •  Equivalently: X̄ ₙ is approximately Normal(μ,    σ²/n) for large n.
+[s22-p002] • This is why normal approximations support
+[s22-p003] confidence intervals, and why Gaussian curves emerge from many small independent effects.
+[s22-p004] •  Misconception: CLT does NOT say the original   data are Normal.
+[s22-p005] •  It only says the STANDARDIZED SAMPLE MEAN        becomes approximately Normal.
+[s22-p006] AI relevance: explains noisy minibatch gradient                behavior in deep learning, and return-estimation             error in reinforcement learning.
+[s22-p007] -3.0
+[s22-p008] -2.8
+[s22-p009] -2.6
+[s22-p010] -2.4
+[s22-p011] -2.2
+[s22-p012] -2.0
+[s22-p013] - 1.8
+[s22-p014] - 1.6
+[s22-p015] - 1.4
+[s22-p016] - 1.2
+[s22-p017] - 1.0
+[s22-p018] -0.8
+[s22-p019] -0.6
+[s22-p020] -0.4
+[s22-p021] -0.2
+[s22-p022] 0.0
+[s22-p023] 0.2
+[s22-p024] 0.4
+[s22-p025] 0.6
+[s22-p026] 0.8
+[s22-p027] 1.0
+[s22-p028] 1.2
+[s22-p029] 1.4
+[s22-p030] 1.6
+[s22-p031] 1.8
+[s22-p032] 2.0
+[s22-p033] 2.2
+[s22-p034] 2.4
+[s22-p035] 2.6
+[s22-p036] 2.8
+[s22-p037] 3.0
+[s22-p038] Central Limit Theorem: The Formula
+[s22-p039] PART  I  -  FOUNDATIONS
+[s22-p040] Standardized Sample Mean → N(0,1)
+[s23-p000] Information Theory: Entropy
+[s23-p001] •  Entropy H(X) = -Σₓ P(X=x) log P(X=x)
+[s23-p002] •  Entropy measures uncertainty: higher H(X) =        more uncertain outcome.
+[s23-p003] •  Binary example: entropy is highest at p=0.5
+[s23-p004] (maximum uncertainty), and lowest near p=0 or   p=1 (nearly certain).
+[s23-p005] •  Maximum-entropy principle: choose the least-      committal distribution consistent with what you   know.
+[s23-p006] •  Loosely connects to logistic regression and to                  Bayesian reasoning without overcommitting.
+[s23-p007] 0.0 1
+[s23-p008] 0.04
+[s23-p009] 0.07
+[s23-p010] 0. 10
+[s23-p011] 0. 13
+[s23-p012] 0. 16
+[s23-p013] 0. 19
+[s23-p014] 0.22
+[s23-p015] 0.25
+[s23-p016] 0.28
+[s23-p017] 0.3 1
+[s23-p018] 0.34
+[s23-p019] 0.37
+[s23-p020] 0.40
+[s23-p021] 0.43
+[s23-p022] 0.46
+[s23-p023] 0.49
+[s23-p024] 0.52
+[s23-p025] 0.55
+[s23-p026] 0.58
+[s23-p027] 0.6 1
+[s23-p028] 0.64
+[s23-p029] 0.67
+[s23-p030] 0.70
+[s23-p031] 0.73
+[s23-p032] 0.76
+[s23-p033] 0.79
+[s23-p034] 0.82
+[s23-p035] 0.85
+[s23-p036] 0.88
+[s23-p037] 0.9 1
+[s23-p038] 0.94
+[s23-p039] 0.97
+[s23-p040] 1.2
+[s23-p041] 1
+[s23-p042] 0.8
+[s23-p043] 0.6
+[s23-p044] 0.4
+[s23-p045] 0.2
+[s23-p046] 0
+[s23-p047] Peak at p=0.5 (1 bit); entropy → 0 as p → 0 or p → 1
+[s23-p048] (near-certain outcome).
+[s23-p049] PART  I  -  FOUNDATIONS
+[s23-p050] Binary Entropy Curve H(p)
+[s24-p000] 02
+[s24-p001] Probability Distributions
+[s24-p002] Discrete and continuous families, and how to choose one
+[s25-p000] Data Type
+[s25-p001] Possible Distribution
+[s25-p002] Binary outcome (yes/no)
+[s25-p003] Bernoulli
+[s25-p004] Number of successes in n trials
+[s25-p005] Binomial
+[s25-p006] Event count in an interval
+[s25-p007] Poisson
+[s25-p008] Multiple categories
+[s25-p009] Multinomial
+[s25-p010] Bounded continuous value
+[s25-p011] Uniform
+[s25-p012] Bell-shaped continuous value
+[s25-p013] Gaussian (Normal)
+[s25-p014] Waiting time
+[s25-p015] Exponential
+[s25-p016] Positive, skewed value
+[s25-p017] Gamma
+[s25-p018] A probability parameter
+[s25-p019] Beta
+[s25-p020] A probability vector
+[s25-p021] Dirichlet
+[s25-p022] PART  II  -  DISTRIBUTIONS
+[s25-p023] Choosing a Distribution: The Map
+[s26-p000] PART  II  -  DISCRETE
+[s26-p001] Bernoulli Distribution
+[s26-p002] • What it models: one binary trial
+[s26-p003] (success/failure, yes/no).
+[s26-p004] •  X ~ Bernoulli(p): P(X=1)=p, P(X=0)=1-p
+[s26-p005] •  E[X] = p,   Var(X) = p(1-p)
+[s26-p006] • AI examples: spam label, dropout mask, sigmoid neural output.
+[s26-p007] •  Assumption: two mutually exclusive outcomes, fixed  p across repetitions.
+[s26-p008] •  Limitation: cannot represent more than two                outcomes or a time-varying rate.
+[s26-p009] 0.70
+[s26-p010] 0.30
+[s26-p011] X=0                                         X=1
+[s26-p012] 1
+[s26-p013] 0.9
+[s26-p014] 0.8
+[s26-p015] 0.7
+[s26-p016] 0.6
+[s26-p017] 0.5
+[s26-p018] 0.4
+[s26-p019] 0.3
+[s26-p020] 0.2
+[s26-p021] 0.1
+[s26-p022] 0
+[s26-p023] Bernoulli(p = 0.3)
+[s27-p000] Binomial Distribution
+[s27-p001] • What it models: number of successes in n          independent Bernoulli(p) trials.
+[s27-p002] •  P(Y=k) = C(n,k) pᵏ (1-p)ⁿ_ᵏ
+[s27-p003] •  E[Y] = np,   Var(Y) = np(1-p)
+[s27-p004] • AI example: number of purchases among n      users in an A/B test.
+[s27-p005] •  Assumption: independence and CONSTANT p across all trials.
+[s27-p006] •  Limitation: social influence or a changing population violates this.
+[s27-p007] 0      1      2       3      4       5       6      7       8      9      10     11     12    13     14     15     16    17     18     19    20
+[s27-p008] PART  II  -  DISCRETE
+[s27-p009] Binomial(n=20, p=0.3)
+[s28-p000] Poisson Distribution
+[s28-p001] • What it models: count of sparse, independent
+[s28-p002] events per unit time/space.                                                                                     Poisson(λ = 4)
+[s28-p003] •  P(Z=k) = λᵏ e⁻λ / k!
+[s28-p004] •  E[Z] = Var(Z) = λ
+[s28-p005] • AI examples: clicks per minute, server requests,
+[s28-p006] word occurrences.
+[s28-p007] •  Assumption: independent, homogeneous-rate events
+[s28-p008] (Poisson process).
+[s28-p009] •  Fails when: rate changes over time (rush hour) or
+[s28-p010] events inhibit each other.
+[s28-p011] 0       1       2       3       4       5       6       7       8       9      10     11     12     13     14
+[s28-p012] PART  II  -  DISCRETE
+[s29-p000] Multinomial Distribution
+[s29-p001] • What it models: counts across K categories        after n independent trials.
+[s29-p002] •  P(N₁=k₁,...,N_K=k_K) = n!/(k₁ !…k_K!) ∏ pᵢᵏ ⁱ
+[s29-p003] •  E[Nᵢ] = npᵢ
+[s29-p004] • AI examples: word counts, topic-model counts, softmax-style category probabilities, epsilon-     greedy action choice.
+[s29-p005] •  A softmax output parameterizes a categorical
+[s29-p006] distribution for one trial. Counts from repeated
+[s29-p007] categorical trials follow a multinomial distribution.
+[s29-p008] •  Assumption: category probabilities constant across     trials.
+[s29-p009] •  Limitation: cannot capture order or drifting
+[s29-p010] probabilities -- needs sequential models (HMM, RNN).
+[s29-p011] 0.40
+[s29-p012] 0.30
+[s29-p013] 0.20
+[s29-p014] 0.10
+[s29-p015] Topic A               Topic B               Topic C               Topic D
+[s29-p016] 0.5
+[s29-p017] 0.45 0.4
+[s29-p018] 0.35 0.3
+[s29-p019] 0.25 0.2
+[s29-p020] 0.15 0.1
+[s29-p021] 0.05 0
+[s29-p022] Example: 4-Category Probabilities
+[s29-p023] PART  II  -  DISCRETE
+[s30-p000] PART  II  -  CONTINUOUS
+[s30-p001] Uniform Distribution (Brief)
+[s30-p002] •  fU(x) = 1/(b-a) for x∈[a,b], zero otherwise
+[s30-p003] •  E[U] = (a+b)/2,   Var(U) = (b-a)²/12
+[s30-p004] • AI uses: weight initialization, action exploration, Monte Carlo sampling, random image crops.
+[s30-p005] •  Assumption: every value in the range is equally likely.
+[s30-p006] •  Limitation: rarely matches peaked real data; no            proper uniform over the whole real line.
+[s30-p007] -0.5 -0.4 -0.3 -0.2 -0.1  0.0  0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9   1.0  1.1  1.2  1.3  1.4  1.5
+[s30-p008] Uniform(0,1) Density
+[s31-p000] Normal Distribution: Shape
+[s31-p001] •  fX(x) = 1/(σ√ (2π)) exp(-(x-μ)²/(2σ² ))
+[s31-p002] •  μ = center of the curve (location).
+[s31-p003] •  σ = spread of the curve (scale).
+[s31-p004] • Symmetric, unimodal, light-tailed, defined on   the whole real line.
+[s31-p005] •  Normal(0,1) is called the standard normal.
+[s31-p006] 	μ=0, σ=1            μ=0, σ=2
+[s31-p007] Different μ, Same σ
+[s31-p008] PART  II  -  CONTINUOUS
+[s31-p009] -- μ=-1, σ=1    -- μ=1.5, σ=1
+[s31-p010] Same μ, Different σ
+[s32-p000] •  AI connections:
+[s32-p001] •  Linear regression error, Gaussian Naive Bayes,   GMMs, Kalman filters
+[s32-p002] •  VAE latent variables, GAN input noise
+[s32-p003] •  “Not every dataset is Gaussian.”
+[s32-p004] •  Heavy-tailed data (finance), non-negative data
+[s32-p005] (durations), multimodal data (clusters) all break the Gaussian assumption.
+[s32-p006] Multimodal image-pixel intensities, for example,
+[s32-p007] cannot be captured by a single Gaussian -- a mixture      model is needed.
+[s32-p008] Gaussian Naive Bayes
+[s32-p009] VAE Latent Space
+[s32-p010] Linear
+[s32-p011] Regression
+[s32-p012] GAN Input Noise
+[s32-p013] GMM
+[s32-p014] Clustering
+[s32-p015] Kalman Filters
+[s32-p016] Normal Distribution: AI Connections & Limits
+[s32-p017] PART  II  -  CONTINUOUS
+[s33-p000] •  Exponential: waiting time of a memoryless process
+[s33-p001] •  fT(t) = λe⁻λᵗ,  E[T]=1/λ,  Var(T)=1/λ²
+[s33-p002] •  For integer shape α, Gamma can be viewed as the waiting time until the α-th event in a Poisson
+[s33-p003] process.
+[s33-p004] •  E[X]=αβ,  Var(X)=αβ²  (shape α, scale β)
+[s33-p005] •  Exponential = Gamma with shape α = 1
+[s33-p006] •  Memoryless assumption often fails (aging products, buses); Gamma/Weibull relax it.
+[s33-p007] Exponential = Special Case of Gamma
+[s33-p008] 	Gamma(α=1)=Exp              Gamma(α=2)              Gamma(α=4)
+[s33-p009] Exponential & Gamma Distributions
+[s33-p010] 0.00
+[s33-p011] 0.13
+[s33-p012] 0.25
+[s33-p013] 0.38
+[s33-p014] 0.50
+[s33-p015] 0.63
+[s33-p016] 0.75
+[s33-p017] 0.88
+[s33-p018] 1.00
+[s33-p019] 1.13
+[s33-p020] 1.25
+[s33-p021] 1.38
+[s33-p022] 1.50
+[s33-p023] 1.63
+[s33-p024] 1.75
+[s33-p025] 1.88
+[s33-p026] 2.00
+[s33-p027] 2.13
+[s33-p028] 2.25
+[s33-p029] 2.38
+[s33-p030] 2.50
+[s33-p031] 2.63
+[s33-p032] 2.75
+[s33-p033] 2.88
+[s33-p034] 3.00
+[s33-p035] 3.13
+[s33-p036] 3.25
+[s33-p037] 3.38
+[s33-p038] 3.50
+[s33-p039] 3.63
+[s33-p040] 3.75
+[s33-p041] 3.88
+[s33-p042] 4.00
+[s33-p043] 4.13
+[s33-p044] 4.25
+[s33-p045] 4.38
+[s33-p046] 4.50
+[s33-p047] 4.63
+[s33-p048] 4.75
+[s33-p049] 4.88
+[s33-p050] 5.00
+[s33-p051] PART  II  -  CONTINUOUS
+[s34-p000] Probability
+[s34-p001] •  Beta lives on [0,1] -- it represents uncertainty about a probability, not an outcome itself.
+[s34-p002] •  Bernoulli models an outcome. Beta models            uncertainty about the probability p itself.
+[s34-p003] •  Example question: “What is the true click-
+[s34-p004] through rate?” -- that's a Beta question, not a Bernoulli one.
+[s34-p005] •  α and β behave like prior count parameters in Beta–
+[s34-p006] Bernoulli updating. When α, β > 1, α-1 and β-1 can be interpreted approximately as prior successes and prior failures.
+[s34-p007] Beta Distribution: Modeling Uncertainty About a
+[s34-p008] 0.01
+[s34-p009] 0.03
+[s34-p010] 0.06
+[s34-p011] 0.08
+[s34-p012] 0.10
+[s34-p013] 0.13
+[s34-p014] 0.15
+[s34-p015] 0.18
+[s34-p016] 0.20
+[s34-p017] 0.23
+[s34-p018] 0.26
+[s34-p019] 0.28
+[s34-p020] 0.30
+[s34-p021] 0.33
+[s34-p022] 0.35
+[s34-p023] 0.38
+[s34-p024] 0.41
+[s34-p025] 0.43
+[s34-p026] 0.46
+[s34-p027] 0.48
+[s34-p028] 0.51
+[s34-p029] 0.53
+[s34-p030] 0.56
+[s34-p031] 0.58
+[s34-p032] 0.60
+[s34-p033] 0.63
+[s34-p034] 0.66
+[s34-p035] 0.68
+[s34-p036] 0.70
+[s34-p037] 0.73
+[s34-p038] 0.76
+[s34-p039] 0.78
+[s34-p040] 0.81
+[s34-p041] 0.83
+[s34-p042] 0.85
+[s34-p043] 0.88
+[s34-p044] 0.91
+[s34-p045] 0.93
+[s34-p046] 0.95
+[s34-p047] 0.98
+[s34-p048] 	Beta(1,1)             Beta(2,2)              Beta(10,2)              Beta(0.5,0.5)
+[s34-p049] PART  II  -  CONTINUOUS
+[s34-p050] Beta Shapes
+[s35-p000] •  Problem: Prior belief about click-through rate p is Beta(2,2).  We observe 8 successes and 2 failures. Find the posterior.
+[s35-p001] •  Step 1: Beta is conjugate to Bernoulli/Binomial likelihoods.
+[s35-p002] •  Step 2: Update rule: Beta(α,β) + s successes, f failures →            Beta(α+s, β+f)
+[s35-p003] •  Step 3: α_new = 2 + 8 = 10,    β_new = 2 + 2 = 4
+[s35-p004] •  Step 4: Posterior = Beta(10, 4)
+[s35-p005] •  Interpretation: the posterior mean shifts from 0.5 (prior) toward 10/14 ≈ 0.71, reflecting the observed high success rate.
+[s35-p006] 	Prior Beta(2,2)              Posterior Beta(10,4)
+[s35-p007] The posterior is sharper and shifted right -- 10
+[s35-p008] data points concentrated our belief.
+[s35-p009] Worked Example: Beta-Bernoulli Updating
+[s35-p010] 0.01
+[s35-p011] 0.04
+[s35-p012] 0.07
+[s35-p013] 0.10
+[s35-p014] 0.13
+[s35-p015] 0.15
+[s35-p016] 0.18
+[s35-p017] 0.21
+[s35-p018] 0.24
+[s35-p019] 0.28
+[s35-p020] 0.30
+[s35-p021] 0.34
+[s35-p022] 0.36
+[s35-p023] 0.40
+[s35-p024] 0.42
+[s35-p025] 0.46
+[s35-p026] 0.48
+[s35-p027] 0.52
+[s35-p028] 0.55
+[s35-p029] 0.57
+[s35-p030] 0.60
+[s35-p031] 0.64
+[s35-p032] 0.67
+[s35-p033] 0.69
+[s35-p034] 0.72
+[s35-p035] 0.76
+[s35-p036] 0.79
+[s35-p037] 0.81
+[s35-p038] 0.84
+[s35-p039] 0.88
+[s35-p040] 0.91
+[s35-p041] 0.94
+[s35-p042] 0.96
+[s35-p043] 0.99
+[s35-p044] PART  II  -  CONTINUOUS
+[s35-p045] Prior → Data → Posterior
+[s36-p000] Category B                                                          Category C
+[s36-p001] Category A
+[s36-p002] •  Beta describes uncertainty about ONE            probability (two outcomes).
+[s36-p003] •  Dirichlet describes uncertainty about a           PROBABILITY VECTOR over K categories.
+[s36-p004] •  Lives on the simplex: zᵢ ≥ 0, Σᵢ zᵢ = 1
+[s36-p005] • Applications: topic models (LDA), multinomial smoothing, Bayesian naive Bayes.
+[s36-p006] •  Equal concentration parameters = symmetric prior; large αi favors category i.
+[s36-p007] Dirichlet Distribution: “Beta for Multiple Categories”
+[s36-p008] A sample from Dirichlet(α) is a point on this triangle -- a
+[s36-p009] full probability vector over 3 categories.
+[s36-p010] PART  II  -  CONTINUOUS
+[s37-p000] Bernoulli
+[s37-p001] Poisson
+[s37-p002] Exponential
+[s37-p003] Beta
+[s37-p004] Binomial
+[s37-p005] Normal
+[s37-p006] Gamma
+[s37-p007] Dirichlet
+[s37-p008] •  Bernoulli, Binomial, Poisson, Normal,
+[s37-p009] Exponential, Gamma, Beta, Dirichlet all share    one general form.
+[s37-p010] •  f(x;η) = h(x) exp(η·T(x) - A(η))
+[s37-p011] •  η = natural parameter,  T(x) = sufficient statistic, A(η) = log-partition function
+[s37-p012] •  Why AI/statistics like this family:
+[s37-p013] •  Computational convenience, sufficient statistics,        conjugate priors, generalized linear models.
+[s37-p014] PART  II  -  DISTRIBUTIONS
+[s37-p015] Exponential Family: One Shared Structure
+[s38-p000] → Bernoulli
+[s38-p001] → Poisson / alternatives → Exponential / Gamma
+[s38-p002] → Gaussian (baseline)
+[s38-p003] → Beta
+[s38-p004] → Dirichlet
+[s38-p005] Binary?
+[s38-p006] Count?
+[s38-p007] Positive continuous?
+[s38-p008] Real-valued,
+[s38-p009] symmetric?
+[s38-p010] A probability?
+[s38-p011] A probability vector?
+[s38-p012] •  Don't pick Gaussian just because it's familiar.
+[s38-p013] •  Consider: support, symmetry, tails,
+[s38-p014] multimodality, independence, data size,         interpretability.
+[s38-p015] • A misspecified distribution introduces
+[s38-p016] systematic bias -- e.g. a single Gaussian on  multimodal pixel data.
+[s38-p017] • Simple decision tree:
+[s38-p018] Model Selection: A Distribution Is an Assumption
+[s38-p019] PART  II  -  DISTRIBUTIONS
+[s39-p000] 03
+[s39-p001] Statistical Inference
+[s39-p002] MLE, method of moments, MAP, and full Bayesian inference
+[s40-p000] • We observe data D = {x1, ..., xn}.
+[s40-p001] • The model has an unknown parameter θ (e.g. a Gaussian's μ and σ, or a Poisson's λ).
+[s40-p002] •  How do we estimate θ from D?
+[s40-p003] •  Four approaches: MLE, Method of Moments, MAP, and full Bayesian inference.
+[s40-p004] PART  III  -  INFERENCE
+[s40-p005] The Problem: Unknown Parameters
+[s40-p006] Model p(x|θ)
+[s40-p007] θ unknown
+[s40-p008] Data
+[s40-p009] D = {x1,...,xn}
+[s40-p010] Four estimation strategies covered in this part.
+[s40-p011] MLE
+[s40-p012] MAP
+[s40-p013] Bayesian
+[s40-p014] MOM
+[s41-p000] •  Idea: choose the parameter value that makes the observed data MOST LIKELY.
+[s41-p001] •  θ̂_MLE = argmax_θ p(D|θ)
+[s41-p002] •  For i.i.d. data: L(θ;D) = ∏ᵢ p(xᵢ|θ)
+[s41-p003] • We maximize the LOG-likelihood instead:
+[s41-p004] •  log L = Σᵢ log p(xᵢ|θ)
+[s41-p005] •  Why log? Turns a product into a sum -- easier to   differentiate and numerically stable.
+[s41-p006] PART  III  -  M LE
+[s41-p007] Maximum Likelihood Estimation: Intuition
+[s41-p008] Compute likelihood of
+[s41-p009] observed data for each θ
+[s41-p010] Pick θ that makes data
+[s41-p011] most probable → θ̂_MLE
+[s41-p012] Try many θ values
+[s42-p000] Worked Example: Bernoulli MLE
+[s42-p001] •  Problem: 100 users visit a page; 70 click. Estimate the click probability p.
+[s42-p002] Step 1: L(p) = pN1  (1-p)N0,  with N1=70 (successes), N0=30 (failures)
+[s42-p003] •  Step 2: log-likelihood ℓ(p) = N1 log p + N0 log(1-p)
+[s42-p004] •  Step 3: Set derivative to zero: N1/p - N0/(1-p) = 0
+[s42-p005] •  Step 4: Solve → p̂ = N1/n = 70/100 = 0.70
+[s42-p006] •  Interpretation: the MLE is simply the observed success fraction. This connects directly to cross-entropy training in neural nets -- minimizing cross-entropy is maximizing likelihood.
+[s42-p007] PART  III  -  M LE
+[s43-p000] •  μ̂ = x̄ = (1/n) Σᵢ xᵢ   (sample mean)
+[s43-p001] •  σ̂²_MLE = (1/n) Σᵢ (xᵢ - x̄)²    (MLE of variance)
+[s43-p002] •  The MLE uses denominator n. The unbiased sample        variance uses denominator n-1.
+[s43-p003] • Why is the mean “everywhere” in statistics and ML? Because under a Gaussian model, the
+[s43-p004] sample mean IS the maximum-likelihood           estimator of μ .
+[s43-p005] •  Under Gaussian regression errors, maximizing            likelihood ≡ minimizing mean-squared error.
+[s43-p006] This is why mean-squared-error loss is so common in     AI: for Gaussian-distributed errors, MSE
+[s43-p007] minimization and likelihood maximization are the            same optimization problem.
+[s43-p008] Gaussian MLE
+[s43-p009] PART  III  -  M LE
+[s44-p000] Method of Moments
+[s44-p001] •  Idea: set theoretical moments equal to sample moments, then solve for θ .
+[s44-p002] •  mᵣ(θ) = Eθ[Xʳ]   set equal to    m̂ ᵣ = (1/n)Σᵢ xᵢʳ
+[s44-p003] •  Examples: Poisson mean estimator, Bernoulli     frequency estimator.
+[s44-p004] •  Pros: often simple, avoids a complicated likelihood.
+[s44-p005] •  Cons: can be less efficient than MLE, may yield
+[s44-p006] invalid parameter values, higher moments are noisy.
+[s44-p007] Theoretical moment
+[s44-p008] Eθ[Xʳ]
+[s44-p009] Sample moment
+[s44-p010] (1/n) Σ xᵢʳ
+[s44-p011] θ̂_MOM
+[s44-p012] PART  III  -  MOM
+[s44-p013] set equal to
+[s44-p014] solve for θ
+[s45-p000] (B) Whether an email is spam
+[s45-p001] (C) Probability that a user clicks an ad
+[s45-p002] (D) Waiting time between server requests
+[s45-p003] Match each to: Poisson, Bernoulli, Beta, Exponential. Discuss, then check the answer in the speaker notes.
+[s45-p004] THINK  -  PAIR  -  SHARE
+[s45-p005] Which distribution would you choose?
+[s45-p006] (A) Number of users arriving per minute
+[s46-p000] MAP vs. MLE
+[s46-p001] •  MLE maximizes the likelihood alone: θ̂_MLE =   argmax_θ p(D|θ)
+[s46-p002] •  MAP maximizes likelihood × prior:
+[s46-p003] •  θ̂_MAP = argmax_θ p(D|θ) p(θ)
+[s46-p004] •  Gaussian prior on weights → L2 penalty → ridge regression
+[s46-p005] •  Laplace prior on weights → L1 penalty → lasso
+[s46-p006] •  Regularization = prior belief, expressed as an     optimization penalty.
+[s46-p007] MAP:
+[s46-p008] Prior + Data → Estimate
+[s46-p009] MLE:
+[s46-p010] Data → Estimate
+[s46-p011] MAP anchors the estimate using prior belief, especially
+[s46-p012] useful with little data.
+[s46-p013] PART  III  -  MAP
+[s47-p000] THINK  -  PAIR  -  SHARE
+[s47-p001] You have only 5 observations, but strong prior knowledge. MLE or MAP?
+[s47-p002] Discuss with a partner. We will compare MLE, MAP, and full Bayesian inference on the next slides.
+[s48-p000] Question
+[s48-p001] MLE
+[s48-p002] MAP
+[s48-p003] Bayesian
+[s48-p004] What is θ?
+[s48-p005] Fixed, unknown value
+[s48-p006] Fixed, unknown value
+[s48-p007] A random variable
+[s48-p008] Output
+[s48-p009] Single point estimate
+[s48-p010] Posterior mode (single
+[s48-p011] point)
+[s48-p012] Full posterior distribution
+[s48-p013] Uses a prior?
+[s48-p014] No
+[s48-p015] Yes
+[s48-p016] Yes
+[s48-p017] Captures uncertainty?
+[s48-p018] No
+[s48-p019] No
+[s48-p020] Yes
+[s48-p021] Point estimate (MLE / MAP)                                                                                                                                                                                  Full uncertainty distribution (posterior curve)
+[s48-p022] -3.0
+[s48-p023] -2.9
+[s48-p024] -2.8
+[s48-p025] -2.7
+[s48-p026] -2.6
+[s48-p027] -2.5
+[s48-p028] -2.4
+[s48-p029] -2.3
+[s48-p030] -2.2
+[s48-p031] -2.1
+[s48-p032] -2.0
+[s48-p033] -1.9
+[s48-p034] -1.8
+[s48-p035] -1.7
+[s48-p036] -1.6
+[s48-p037] -1.5
+[s48-p038] -1.4
+[s48-p039] -1.3
+[s48-p040] -1.2
+[s48-p041] -1.1
+[s48-p042] -1.0
+[s48-p043] -0.9
+[s48-p044] -0.8
+[s48-p045] -0.7
+[s48-p046] -0.6
+[s48-p047] -0.5
+[s48-p048] -0.4
+[s48-p049] -0.3
+[s48-p050] -0.2
+[s48-p051] -0.1
+[s48-p052] 0.0
+[s48-p053] 0.1
+[s48-p054] 0.2
+[s48-p055] 0.3
+[s48-p056] 0.4
+[s48-p057] 0.5
+[s48-p058] 0.6
+[s48-p059] 0.7
+[s48-p060] 0.8
+[s48-p061] 0.9
+[s48-p062] 1.0
+[s48-p063] 1.1
+[s48-p064] 1.2
+[s48-p065] 1.3
+[s48-p066] 1.4
+[s48-p067] 1.5
+[s48-p068] 1.6
+[s48-p069] 1.7
+[s48-p070] 1.8
+[s48-p071] 1.9
+[s48-p072] 2.0
+[s48-p073] 2.1
+[s48-p074] 2.2
+[s48-p075] 2.3
+[s48-p076] 2.4
+[s48-p077] 2.5
+[s48-p078] 2.6
+[s48-p079] 2.7
+[s48-p080] 2.8
+[s48-p081] 2.9
+[s48-p082] 3.0
+[s48-p083] θ̂MAP                  θ̂MLE
+[s48-p084] PART  III  -  INFERENCE
+[s48-p085] MLE vs. MAP vs. Full Bayesian Inference
+[s48-p086] Posterior Distribution, with MLE and MAP as Single Points on It
+[s49-p000] PART  III  -  BAYESIAN
+[s49-p001] Full Bayesian Inference
+[s49-p002] •  p(θ|D) = p(D|θ) p(θ) / p(D)
+[s49-p003] •  Posterior predictive: p(x_new|D) = ∫ p(x_new|θ)  p(θ|D) dθ
+[s49-p004] •  Instead of pretending θ is known exactly,
+[s49-p005] Bayesian inference averages predictions over our uncertainty in θ .
+[s49-p006] •  When exact integration is impossible: MCMC,         importance sampling, variational inference
+[s49-p007] (approximations -- not covered in depth here).
+[s49-p008] → Average over θ for posterior predictive
+[s49-p009] → Posterior p(θ|D)
+[s49-p010] Prior p(θ)
+[s49-p011] + Data D
+[s50-p000] Statistical inference is not just optimization -- model assumptions must be checked.
+[s50-p001] Medical priors may come from experts; image models should account for correlations among neighboring pixels.
+[s50-p002] Choose prior
+[s50-p003] (if
+[s50-p004] Bayesian)
+[s50-p005] Estimate
+[s50-p006] /
+[s50-p007] infer
+[s50-p008] params
+[s50-p009] Choose
+[s50-p010] distributi
+[s50-p011] on
+[s50-p012] Write    likelihood
+[s50-p013] Choose model
+[s50-p014] Evaluate on
+[s50-p015] held-out data
+[s50-p016] Quantify
+[s50-p017] uncertain
+[s50-p018] ty
+[s50-p019] Validate
+[s50-p020] assumpti
+[s50-p021] ons
+[s50-p022] Deploy / revise
+[s50-p023] Training & Inference Workflow
+[s50-p024] PART  III  -  INFERENCE
+[s51-p000] 04
+[s51-p001] Probabilistic Models in AI
+[s51-p002] Generative vs discriminative, graphical models, HMMs, and deep learning
+[s52-p000] •  Generative: learns p(x,y) or p(x)
+[s52-p001] •  Can generate data, model the input distribution,  handle missing data.
+[s52-p002] •  Example: Naive Bayes
+[s52-p003] •  Discriminative: learns p(y|x) or a decision boundary
+[s52-p004] •  Discriminative models directly model p(y|x) or the decision boundary.
+[s52-p005] •  They focus on predicting y from x without explicitly modeling how x is generated.
+[s52-p006] •  Example: logistic regression, deep classifiers
+[s52-p007] Discriminative: x → y  (models the prediction boundary directly)
+[s52-p008] (This arrow picture is intuition, not strict mathematical direction.)
+[s52-p009] PART  IV  -  MODELS
+[s52-p010] Generative vs. Discriminative Models
+[s52-p011] x                             y
+[s52-p012] y                             x
+[s52-p013] Generative: y → x  (models how data is generated)
+[s53-p000] •  Nodes = random variables. Edges =
+[s53-p001] dependencies.
+[s53-p002] •  P(x1,...,xn) = ∏ᵢ P(xᵢ | Parents(xᵢ))
+[s53-p003] • A node is independent of non-descendants     given its parents.
+[s53-p004] •  Observing symptoms updates our belief about the disease -- Bayes' theorem running on a
+[s53-p005] graph.
+[s53-p006] Cough                           Test
+[s53-p007] Disease
+[s53-p008] Observing “Fever” and “positive Test” updates P(Disease)
+[s53-p009] via the shared parent structure.
+[s53-p010] PART  IV  -  GRAPHICAL  MODELS
+[s53-p011] Bayesian Networks
+[s53-p012] Fever
+[s54-p000] compatibility, not causal direction.                                                                                                       
+[s54-p001] • Z is a normalizing constant (often hard to                                                                                          
+[s54-p002] •  Image segmentation: neighboring pixels tend to                                                                                                      have similar labels.
+[s54-p003] •  Bayesian networks: directed, causal. MRFs:
+[s54-p004] undirected, compatibility constraints.
+[s54-p005] Neighboring pixels of the same color (label) reinforce each
+[s54-p006] other -- a small image-segmentation grid.
+[s54-p007] •  Undirected edges express symmetric
+[s54-p008] •  P(x) = (1/Z) ∏_C Ψ_C(x_C)
+[s54-p009] Markov Random Fields
+[s54-p010] PART  IV  -  GRAPHICAL  MODELS
+[s54-p011] compute exactly).
+[s55-p000] •  First-order Markov assumption:
+[s55-p001] •  P(sₜ  | sₜ-1, sₜ-₂, ...) = P(sₜ  | sₜ-1)
+[s55-p002] •  “The future depends only on the present, not the full history.”
+[s55-p003] •  Example: weather tomorrow depends only on  weather today, not last week.
+[s55-p004] •  Key parameters: initial distribution + transition matrix aij = P(sₜ=j  | sₜ-1=i).
+[s55-p005] Sunny                       Rainy                      Cloudy
+[s55-p006] s(t-1) → s(t) → s(t+1): each next state depends only on
+[s55-p007] the current one.
+[s55-p008] PART  IV  -  TEMPORAL  MODELS
+[s55-p009] Markov Chains
+[s56-p000] • The state is hidden; we only observe an     emission.
+[s56-p001] •  Hidden = user intent, observed =
+[s56-p002] click/search/purchase.
+[s56-p003] •  OR: hidden = phoneme, observed = audio  signal.
+[s56-p004] •  P(s1:T, o1:T) = P(s1)P(o1|s1) ∏ₜ P(sₜ |sₜ₋₁ )P(oₜ |sₜ )
+[s56-p005] o1                     o2                     o3                     o4
+[s56-p006] s1                       s2                       s3                      s4
+[s56-p007] Hidden Markov Models (1/2)
+[s56-p008] Hidden states s1→s2→s3→s4 emit observations o1..o4.
+[s56-p009] PART  IV  -  TEMPORAL  MODELS
+[s57-p000] Baum-Welch (EM)
+[s57-p001] Learns the model's parameters
+[s57-p002] from data.
+[s57-p003] Forward Algorithm
+[s57-p004] Computes P(o1:T) -- the
+[s57-p005] probability of the observed
+[s57-p006] sequence.
+[s57-p007] Viterbi Algorithm
+[s57-p008] Finds the single most likely         hidden-state sequence.
+[s57-p009] Hidden Markov Models (2/2): Three Classic Algorithms
+[s57-p010] Named here without derivation -- the point is knowing what each algorithm is FOR.
+[s57-p011] PART  IV  -  TEMPORAL  MODELS
+[s58-p000] Bayesian NN
+[s58-p001] Uncertainty Regression
+[s58-p002] VAEs
+[s58-p003] Calibration
+[s58-p004] GANs
+[s58-p005] Ensembles
+[s58-p006] Softmax                Cross-Entropy                Dropout
+[s58-p007] •  Probability is not separate from deep learning -- it's built in.
+[s58-p008] • Softmax & cross-entropy, calibration
+[s58-p009] •  Dropout & Monte Carlo uncertainty, Bayesian neural networks
+[s58-p010] •  GANs and VAEs as probabilistic generative     models
+[s58-p011] •  Uncertainty-aware regression, ensembles
+[s58-p012] PART  IV  -  DEEP  LEARNING
+[s58-p013] Statistics in Deep Learning: Overview
+[s59-p000] •  p̂ ₖ = exp(z ₖ ) / Σⱼ exp(zⱼ)    (softmax: logits →              normalized scores)
+[s59-p001] •  Cross-entropy training is maximum likelihood for the correct class.
+[s59-p002] •  A softmax score is NOT automatically a calibrated probability.
+[s59-p003] •  Calibration check: among predictions made  with 80% confidence, are about 80% actually correct?
+[s59-p004] •  Temperature scaling can correct over/under-          confident softmax outputs.
+[s59-p005] Softmax
+[s59-p006] Normalized scores
+[s59-p007] (NOT auto-calibrated!)
+[s59-p008] Logits
+[s59-p009] z1, z2, z3
+[s59-p010] Softmax, Cross-Entropy & Calibration
+[s59-p011] PART  IV  -  DEEP  LEARNING
+[s60-p000] •  Dropout uses a Bernoulli random mask to
+[s60-p001] disable units -- probability lives directly inside the network.
+[s60-p002] •  Monte Carlo dropout: run multiple stochastic
+[s60-p003] forward passes → estimate predictive uncertainty.
+[s60-p004] •  Bayesian neural networks (more general idea): place a prior on weights w, infer p(w|D).
+[s60-p005] •  BNNs reveal where a model “doesn't know”, but are computationally expensive.
+[s60-p006] Spread of outputs → predictive uncertainty
+[s60-p007] Same input x
+[s60-p008] Forward pass 3
+[s60-p009] (dropout mask
+[s60-p010] C)
+[s60-p011] Forward pass 1
+[s60-p012] (dropout mask
+[s60-p013] A)
+[s60-p014] Forward pass 2
+[s60-p015] (dropout mask
+[s60-p016] B)
+[s60-p017] Dropout & Uncertainty
+[s60-p018] PART  IV  -  DEEP  LEARNING
+[s61-p000] •  GAN: generator G(z) produces samples; goal is Pg ≈ Pdata
+[s61-p001] •  Implicit distribution, no explicit likelihood. Mode      collapse = some modes of Pdata are missed.
+[s61-p002] •  VAE: latent z, prior p(z), decoder p(x|z), encoder   q(z|x)
+[s61-p003] •  VAE training maximizes the ELBO (Evidence Lower  Bound), shown in full on the right.
+[s61-p004] VAE
+[s61-p005] z ~ p(z) → decoder → x
+[s61-p006] encoder q(z|x) ← x
+[s61-p007] GAN
+[s61-p008] z → G(z) → x
+[s61-p009] (implicit distribution)
+[s61-p010] L(θ,φ) = Eqφ(z|x) [log pθ (x|z)]  −  DKL (qφ (z|x) ‖ p(z))
+[s61-p011] First term (reconstruction): fits the data. Second term (KL
+[s61-p012] regularization): stays close to the prior.
+[s61-p013] GANs & VAEs: A Probability Perspective
+[s61-p014] No architecture deep-dive --just the probabilistic role of
+[s61-p015] each piece.
+[s61-p016] PART  IV  -  DEEP  LEARNING
+[s62-p000] 05
+[s62-p001] Practical Applications
+[s62-p002] Spam filtering, diagnosis, recommendation, segmentation, and RL under uncertainty
+[s63-p000] Problem
+[s63-p001] Probabilistic Model
+[s63-p002] Classify an incoming
+[s63-p003] message as spam or
+[s63-p004] normal from its words.
+[s63-p005] P(Y=spam|x) “
+[s63-p006] P(Y=spam) ∏ᵢ
+[s63-p007] P(Xᵢ=xᵢ|Y=spam)
+[s63-p008] PART V  -  CASE  STUDIES
+[s63-p009] Case Study: Spam Filtering with Naive Bayes
+[s63-p010] Inference
+[s63-p011] Estimate word
+[s63-p012] likelihoods and class
+[s63-p013] prior from training data.
+[s63-p014] Decision
+[s63-p015] Pick class with larger
+[s63-p016] posterior; report a spam  probability; threshold
+[s63-p017] Independence assumption is strong, but the model is transparent, fast, and hard to beat as a baseline.
+[s63-p018] × Word likelihoods P(word|spam)
+[s63-p019] Posterior
+[s63-p020] P(spam|words)
+[s63-p021] Prior P(spam)
+[s63-p022] (e.g. 0.9) for auto- blocking.
+[s63-p023] Laplace smoothing
+[s64-p000] accuracy.                                    specificity.                                    posterior, as computed            test gives only ≈15.4%
+[s64-p001] Echoes the Bayes worked example from Part I: doctors need MORE than a single positive test before concluding
+[s64-p002] high disease probability -- a Bayesian network can combine several tests, symptoms, and expert priors coherently.
+[s64-p003] Problem
+[s64-p004] Probabilistic Model
+[s64-p005] Inference
+[s64-p006] Decision
+[s64-p007] Estimate P(disease |
+[s64-p008] test result) from
+[s64-p009] prevalence and test
+[s64-p010] Prior = population
+[s64-p011] prevalence. Likelihood =    test sensitivity /
+[s64-p012] Bayes' theorem
+[s64-p013] combines prior and
+[s64-p014] likelihood into a
+[s64-p015] 1% prevalence + 90%         sensitivity + 95%
+[s64-p016] specificity → positive
+[s64-p017] Case Study: Medical Diagnosis (Recap)
+[s64-p018] PART V  -  CASE  STUDIES
+[s65-p000] Inference
+[s65-p001] Compute a posterior
+[s65-p002] over latent factors;
+[s65-p003] predict a rating WITH an uncertainty interval.
+[s65-p004] Problem
+[s65-p005] Predict a user's rating
+[s65-p006] for an item they haven't rated -- especially hard  for new users/items.
+[s65-p007] Decision
+[s65-p008] “Predicted 4 stars, 80% confidence.” High
+[s65-p009] uncertainty can drive   cautious exploration.
+[s65-p010] Probabilistic Model
+[s65-p011] Bayesian matrix
+[s65-p012] factorization: latent  user/item factors get priors.
+[s65-p013] User × Item  Rating Matrix (mostly empty)
+[s65-p014] Prediction: 4★ 80% confidence
+[s65-p015] Bayesian
+[s65-p016] Latent Factors
+[s65-p017] Case Study: Recommendation Systems
+[s65-p018] PART V  -  CASE  STUDIES
+[s66-p000] thresholding alone.
+[s66-p001] Pixel-color evidence + neighbor consistency → segmentation.
+[s66-p002] CRF post-processing applies the same idea to smooth CNN outputs.
+[s66-p003] contex
+[s66-p004] t
+[s66-p005] Inference
+[s66-p006] Probabilistic Model
+[s66-p007] Problem
+[s66-p008] Label each pixel as
+[s66-p009] foreground or
+[s66-p010] background from color
+[s66-p011] P(Y|X) “ exp(Σᵢ log
+[s66-p012] P(Xᵢ|Yᵢ) + β Σ neighbor-      agreement)  (MRF/CRF-
+[s66-p013] MAP solution ≈ an
+[s66-p014] energy-minimization /       graph-cut problem.
+[s66-p015] Decision
+[s66-p016] Combines per-pixel            color evidence with a         smoothness prior --
+[s66-p017] Case Study: Image Segmentation
+[s66-p018] evidence and spatial
+[s66-p019] PART V  -  CASE  STUDIES
+[s66-p020] better than
+[s66-p021] style)
+[s67-p000] Decision
+[s67-p001] Action selection can
+[s67-p002] account for risk, not just expected return (e.g.
+[s67-p003] penalize variance,
+[s67-p004] Inference
+[s67-p005] Bayesian update after each observation;
+[s67-p006] predict next belief with the action-conditioned
+[s67-p007] Problem
+[s67-p008] The agent doesn't observe the true  environment state perfectly (partially
+[s67-p009] Probabilistic Model
+[s67-p010] Maintain a belief
+[s67-p011] distribution over
+[s67-p012] possible states.
+[s67-p013] Broad belief
+[s67-p014] (uncertain position)
+[s67-p015] Posterior belief concentrates
+[s67-p016] New landmark observation
+[s67-p017] Robot moves
+[s67-p018] Case Study: Reinforcement Learning Under Uncertainty
+[s67-p019] RL is not only about maximizing expected reward -- uncertainty and risk also matter.
+[s67-p020] PART V  -  CASE  STUDIES
+[s68-p000] Decisions Under Uncertainty
+[s68-p001] Probability Distributions
+[s68-p002] Probabilistic AI Models
+[s68-p003] Parameter Learning
+[s68-p004] Events & Variables
+[s68-p005] Foundations                    Distributions                       Inference                        AI Models                       Applications
+[s68-p006] Every arrow above is a chapter of this deck: what we observe, how we model it, how we learn its parameters, how AI
+[s68-p007] systems encode it, and how it drives real decisions.
+[s68-p008] CLOSING
+[s68-p009] Chapter Integration
+[s69-p000] Common Misconceptions
+[s69-p001] •  1. Probability density ≠ probability (a point always has probability 0 for continuous X).
+[s69-p002] •  2. P(A|B) ≠ P(B|A) -- conditioning direction matters.
+[s69-p003] •  3. A positive test does not imply a high posterior probability of disease.
+[s69-p004] •  4. CLT does NOT mean the original data are Gaussian -- it's about standardized sample averages.
+[s69-p005] •  5. Softmax confidence is not automatically a calibrated probability.
+[s69-p006] •  6. Independence is a modeling assumption, not a universal fact.
+[s69-p007] •  7. MLE gives a point estimate, not the complete uncertainty picture.
+[s69-p008] •  8. A familiar distribution (e.g. Gaussian) isn't necessarily the correct model.
+[s69-p009] CLOSING
+[s70-p000] FINAL  SUMMARY
+[s70-p001] 1.  Probability is the language for uncertainty.
+[s70-p002] 2.  A distribution is a modeling assumption, not a fact.
+[s70-p003] 3.  Data let us estimate unknown parameters.
+[s70-p004] 4.  Bayesian methods combine prior knowledge with evidence.
+[s70-p005] 5.  AI systems should quantify uncertainty, not just predict.
+[s70-p006] “The key question is not only ‘What does the model predict?’ but also: ‘How certain should we be about that prediction?’”
+[s71-p000] Appendix: Deeper Math
+[s71-p001] MLE derivations, Fisher information, asymptotic normality, extra distribution formulas Not required in-class content -- instructor / exam reference only.
+[s71-p002] A
+[s72-p000] APPENDIX
+[s72-p001] Gaussian MLE: Full Derivation
+[s72-p002] •  L(μ,σ) 〓 Πᵢ (1/(σ√ (2π))) exp(-(xᵢ-μ)2/(2σ2))
+[s72-p003] •  ℓ(μ,σ) 〓 -(n/2)log(2π) - n log σ - (1/(2σ2)) Σᵢ(xᵢ-μ)2
+[s72-p004] •   ∂ℓ/∂μ 〓 0  →  μ^ 〓 -x 〓 (1/n) Σᵢ xᵢ
+[s72-p005] •  ∂ℓ/∂σ2 〓 0  →  σ^2 〓 (1/n) Σᵢ (xᵢ - -x)2
+[s72-p006] •  Note: this MLE variance divides by n, and is biased downward relative to the unbiased n-1 denominator.
+[s73-p000] Bernoulli, Exponential, Poisson MLE Derivations
+[s73-p001] Bernoulli: L(p) = pN1  (1-p)N0,  ℓ(p) = N1 log p + N0 log(1-p)
+[s73-p002] •  Score equation: N1/p - N0/(1-p) = 0  →  p̂ = N1/n
+[s73-p003] •  Exponential: L(λ) = λ ⁿ exp(-λΣᵢxᵢ)  →  λ̂ = 1/x̄
+[s73-p004] Poisson: L(λ) = ∏ᵢ λxᵢ  e−λ / xᵢ!  →  λ̂ = (1/n)Σᵢ xᵢ = x̄
+[s73-p005] •  All three MLEs reduce to a simple, familiar descriptive statistic (a fraction or a sample mean).
+[s73-p006] APPENDIX
+[s74-p000] Worked Example: Exponential MLE (Service Waiting Times)
+[s74-p001] •  Problem: 30 service waiting times, sample mean x̄ = 1.283 hours. Fit an exponential model.
+[s74-p002] •  Step 1: For exponential data, λ̂ = 1/x̄
+[s74-p003] •  Step 2: λ̂ = 1/1.283 ≈ 0.779 per hour
+[s74-p004] •  Step 3: Fisher information I(λ) = n/λ²  →  SE(λ̂) ≈ λ̂/√ n = 0.779/√30 ≈ 0.142
+[s74-p005] •  Step 4: Approximate 95% interval: [0.500, 1.058]
+[s74-p006] •  Interpretation: the estimate carries a quantified uncertainty band, not just a point value.
+[s74-p007] APPENDIX
+[s75-p000] Fisher Information & Asymptotic Normality
+[s75-p001] • Observed Fisher information: |(θ̂) = -ℓ丨丨(θ̂)
+[s75-p002] • Approximate variance: Var(θ̂) ≈ |(θ̂)_1
+[s75-p003] • Under regularity conditions, MLE is consistent and asymptotically normal:
+[s75-p004] • √ n (θ̂ - θ*) ⇒ Normal(0, l(θ*)_1)
+[s75-p005] • MLE can attain the Cramér-Rao lower bound.
+[s75-p006] • Small samples: bias and large variance are possible; boundary cases (e.g. all-success Bernoulli) give p̂=1 with no automatic uncertainty measure.
+[s75-p007] APPEND l X
+[s76-p000] Distribution
+[s76-p001] Density
+[s76-p002] Moments / Notes
+[s76-p003] Gamma
+[s76-p004] f(x) = xα_1  e_x/β ⁄ [Γ(α)βα ],  x > 0
+[s76-p005] E[X]=αβ, Var(X)=αβ²
+[s76-p006] Beta
+[s76-p007] f(y) = Γ(α+β) ⁄ [Γ(α)Γ(β)] · yα_1  (1_y) β_1
+[s76-p008] E[Y]=α/(α+β)
+[s76-p009] Dirichlet
+[s76-p010] f(z) = Γ(Σαi) ⁄ ∏Γ(αi) · ∏ ziαi_1
+[s76-p011] E[zi]=αi/Σαj
+[s76-p012] Exponential family
+[s76-p013] f(x;η)=h(x)exp(η·T(x)-A(η))
+[s76-p014] η natural param, T(x) sufficient stat
+[s76-p015] Reference table for denser formulas mentioned briefly in the main lecture.
+[s76-p016] Extra Distribution Formulas
+[s76-p017] APPENDIX
+[s77-p000] Extra Bayesian Formulas: Conjugate Updates
+[s77-p001] •  Beta-Bernoulli: Beta(α,β) + N1 successes, N0 failures  →  Beta(α+N1, β+N0)
+[s77-p002] •  Dirichlet-Multinomial: Dirichlet(α) + category counts k  →  Dirichlet(α + k)
+[s77-p003] •  Gamma-Poisson: Gamma(a,b) + Poisson counts  →  updated Gamma posterior
+[s77-p004] •  Conjugacy makes Bayesian updating analytic and fast -- no numerical integration needed.
+[s77-p005] •  When no conjugate form exists: MCMC, importance sampling, or variational inference approximate the posterior.
+[s77-p006] APPENDIX

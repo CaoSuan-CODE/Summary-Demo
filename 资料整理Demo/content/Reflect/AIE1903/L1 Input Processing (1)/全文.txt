@@ -1,0 +1,436 @@
+[s1-p000] AIE1903: Multimodal Agentic Assistant-Tool Use and Autonomous Systems
+[s1-p001] Lecture 1 — RGB Image, Data Normalization,
+[s1-p002] and Word Embedding
+[s1-p003] Ming Li   |   CUHK(SZ), SAI   |   Sep. 2026
+[s1-p004] From raw pixels and words to multimodal tokens
+[s2-p000] Learning Objectives
+[s2-p001] 2
+[s2-p002] •  Explain how an RGB image is stored as numbers and tensors.
+[s2-p003] •  Distinguish data augmentation for images like resizing, cropping, padding, rescaling, and normalization.
+[s2-p004] •  Explain tokenization, token IDs, and word/token embeddings.
+[s2-p005] •  Describe how image patches become visual tokens.
+[s2-p006] •  Describe a complete multimodal input pipeline.
+[s2-p007] Goal: understand the input, not train a large model.
+[s3-p000] The Big Picture: From Human Input to Model Input
+[s3-p001] 4
+[s3-p002] Image/Text
+[s3-p003] Numbers
+[s3-p004] Tokens
+[s3-p005] Embeddings
+[s3-p006] Transformer
+[s3-p007] Humans directly process visual and language information via organic sensors
+[s3-p008] How does an AI model receive and perceive these?
+[s3-p009] Neural networks do not directly “see” a cat or “read” a sentence.
+[s3-p010] They receive tensors and perform numerical operations.
+[s4-p000] Part I — RGB Image
+[s4-p001] Part II — Data Normalization
+[s4-p002] Part III — Text and Word Embedding
+[s4-p003] Part IV — Visual Tokens and Multimodal Input
+[s4-p004] Roadmap
+[s4-p005] 3
+[s5-p000] Part I — RGB Image
+[s5-p001] 5
+[s5-p002] How does a computer represent a color image?
+[s6-p000] Digital Images Are Grids of Pixels
+[s6-p001] 6
+[s6-p002] R: 235
+[s6-p003] G: 66
+[s6-p004] B: 54
+[s6-p005] 240
+[s6-p006] 190
+[s6-p007] 45
+[s6-p008] 48
+[s6-p009] 150
+[s6-p010] 70
+[s6-p011] 45
+[s6-p012] 110
+[s6-p013] 220
+[s6-p014] 125
+[s6-p015] 65
+[s6-p016] 180
+[s6-p017] 240
+[s6-p018] 240
+[s6-p019] 240
+[s6-p020] 25
+[s6-p021] 25
+[s6-p022] 25
+[s6-p023] 130
+[s6-p024] 130
+[s6-p025] 130
+[s6-p026] 255
+[s6-p027] 255
+[s6-p028] 255
+[s6-p029] •  Pixel = image element = colors + spatial locations.
+[s6-p030] •  A grayscale pixel stores one intensity value.
+[s6-p031] •  A color pixel usually stores three channel values.
+[s6-p032] An image is a structured array—not an indivisible object.
+[s6-p033] 3 x 3
+[s7-p000] RGB: Red, Green, and Blue
+[s7-p001] 7
+[s7-p002] Red
+[s7-p003] (255, 0, 0)
+[s7-p004] Green
+[s7-p005] (0, 255, 0)
+[s7-p006] Blue
+[s7-p007] (0, 0, 255)
+[s7-p008] White
+[s7-p009] (255, 255, 255)
+[s7-p010] Yellow
+[s7-p011] (255, 220, 0)
+[s7-p012] Black
+[s7-p013] (0, 0, 0)
+[s7-p014] Each pixel = (R, G, B) on a spatial coordinate, usually with values from 0 to 255.
+[s8-p000] One Image, Three Color Channels
+[s8-p001] 8
+[s8-p002] RGB image
+[s8-p003] Red channel
+[s8-p004] Green channel
+[s8-p005] Blue channel
+[s8-p006] A bright region in one channel means that color contributes strongly at that location.
+[s9-p000] Image Shape: H × W × C
+[s9-p001] 9
+[s9-p002] I ∈ ℝᴴˣᵂˣ³
+[s9-p003] •  H: image height
+[s9-p004] •  W: image width
+[s9-p005] •  C: number of channels
+[s9-p006] •  RGB images normally have C = 3
+[s9-p007] 3 stacked matrices
+[s9-p008] C does not always equels to 3 for images like multispectral images
+[s10-p000] HWC, CHW, and Batch Dimension
+[s10-p001] 10
+[s10-p002] Image file / NumPy
+[s10-p003] H × W × C
+[s10-p004] 224 × 224 × 3
+[s10-p005] PyTorch tensor
+[s10-p006] C × H × W
+[s10-p007] 3 × 224 × 224
+[s10-p008] Batch of 32
+[s10-p009] B × C × H × W
+[s10-p010] 32 × 3 × 224 × 224
+[s10-p011] Common bug: the values are correct, but the dimensions are in the wrong order.
+[s11-p000] Resolution Controls Detail and Cost
+[s11-p001] 11
+[s11-p002] 224 × 224
+[s11-p003] 50,176 pixels
+[s11-p004] 448 × 448
+[s11-p005] 200,704 pixels
+[s11-p006] 2× width and height
+[s11-p007] 4× pixels
+[s11-p008] •  Higher resolution preserves small objects and text.
+[s11-p009] •  It also increases memory, visual tokens, and computation.
+[s11-p010] •  Input resolution is therefore a design trade-off.
+[s12-p000] Image File ≠ Image Tensor
+[s12-p001] 12
+[s12-p002] JPEG / PNG
+[s12-p003] Decode
+[s12-p004] RGB pixels
+[s12-p005] Tensor
+[s12-p006] •  Stored Image files (.jpg/png) contain compression information and file metadata.
+[s12-p007] •  Decoding algorithms reconstruct pixel values. (We do not care about it)
+[s12-p008] •  Convert grayscale or RGB images to the expected RGB format.
+[s12-p009] •  Check shape, channel order, data type, and value range. (Caution for debugging)
+[s13-p000] Part I — RGB Image
+[s13-p001] Part II — Data Normalization
+[s13-p002] Part III — Text and Word Embedding
+[s13-p003] Part IV — Visual Tokens and Multimodal Input
+[s13-p004] Roadmap
+[s13-p005] 13
+[s14-p000] Part II — Data Normalization
+[s14-p001] 14
+[s14-p002] Why do models transform pixel values before using them?
+[s15-p000] A Typical Image Preprocessing Pipeline
+[s15-p001] 16
+[s15-p002] Decode
+[s15-p003] RGB
+[s15-p004] Resize
+[s15-p005] Crop / Pad
+[s15-p006] Rescale
+[s15-p007] Normalize
+[s15-p008] •  The processor makes various real-world images compatible with a fixed model interface.
+[s15-p009] •  The inference pipeline should match the preprocessing used during pretraining!!!
+[s15-p010] Preprocessing changes what information reaches the model.
+[s16-p000] Common Operations w.r.t Inputs
+[s16-p001] 15
+[s16-p002] Input normalization
+[s16-p003] Before the model
+[s16-p004] Pixels
+[s16-p005] Batch normalization
+[s16-p006] Inside a network
+[s16-p007] Batch features
+[s16-p008] Layer normalization
+[s16-p009] Inside a Transformer
+[s16-p010] Token features
+[s16-p011] Data Augmentation
+[s16-p012] Before the tensor converting
+[s16-p013] image
+[s17-p000] Resize, Crop, and Padding
+[s17-p001] 17
+[s17-p002] Resize
+[s17-p003] Changes spatial dimensions
+[s17-p004] May distort aspect ratio
+[s17-p005] Crop
+[s17-p006] Keeps selected region
+[s17-p007] May remove edge objects
+[s17-p008] Padding
+[s17-p009] Adds border area
+[s17-p010] Preserves full content
+[s17-p011] Why Is Data Augmentation Necessary?
+[s17-p012] Reduce Overfitting 
+[s17-p013] Increase Data Diversity 
+[s18-p000] Rescaling Pixel Values to [0, 1]
+[s18-p001] 18
+[s18-p002] x' = x / 255
+[s18-p003] 0
+[s18-p004] →
+[s18-p005] 0.000
+[s18-p006] 64
+[s18-p007] →
+[s18-p008] 0.251
+[s18-p009] 128
+[s18-p010] →
+[s18-p011] 0.502
+[s18-p012] 192
+[s18-p013] →
+[s18-p014] 0.753
+[s18-p015] 255
+[s18-p016] →
+[s18-p017] 1.000
+[s18-p018] Rescaling only changes the numerical scale, not the image meaning.
+[s18-p019] How to reach [-1, 1]?
+[s18-p020] x = (x-255/2)
+[s18-p021] x' = x / (255/2)
+[s19-p000] Mean–Standard Deviation Normalization
+[s19-p001] 19
+[s19-p002] x' = (x − μ) / σ
+[s19-p003] •  Subtract μ: center the data around the mean.
+[s19-p004] •  Divide by σ: express values relative to variation.
+[s19-p005] •  RGB channels usually use separate μ and σ values.
+[s19-p006] •  Negative outputs and values above 1 are normal.
+[s19-p007] Example
+[s19-p008] x = 0.80, μ = 0.50, σ = 0.25
+[s19-p009] x′ = 1.20
+[s20-p000] Worked Example: Normalize One RGB Pixel
+[s20-p001] 20
+[s20-p002] Original pixel: (128, 64, 255)
+[s20-p003] Divide by 255
+[s20-p004] (0.502, 0.251, 1.000)
+[s20-p005] Subtract μ = 0.5
+[s20-p006] Divide by σ = 0.25
+[s20-p007] Normalized result ≈ (0.008, −0.996, 2.000)
+[s20-p008] •  Each channel is processed independently.
+[s20-p009] •  The output does not need to stay between 0 and 1.
+[s21-p000] Why Normalization Matters
+[s21-p001] 21
+[s21-p002] 01
+[s21-p003] Stable scale
+[s21-p004] Avoid unnecessarily large input values
+[s21-p005] 02
+[s21-p006] Comparable channels
+[s21-p007] Reduce differences in channel statistics
+[s21-p008] 03
+[s21-p009] Match pretraining
+[s21-p010] Keep inference inputs in the expected distribution
+[s21-p011] The most important practical rule: use the processor released with the pretrained model.
+[s21-p012] 04
+[s21-p013] Unifying data scales
+[s21-p014] Keep the same scale for different data sources
+[s22-p000] Common Image Input Failures
+[s22-p001] 22
+[s22-p002] RGB ↔ BGR
+[s22-p003] Wrong color channel order
+[s22-p004] Wrong range
+[s22-p005] 0–255 used without normalization
+[s22-p006] Wrong crop
+[s22-p007] Exclude important objects
+[s22-p008] Low resolution
+[s22-p009] Small objects are not identifiable
+[s22-p010] Wrong shape
+[s22-p011] Wrong dimension order: HWC or CHW? 
+[s22-p012] A model error may begin before the model itself.
+[s23-p000] Part I — RGB Image
+[s23-p001] Part II — Data Normalization
+[s23-p002] Part III — Text and Word Embedding
+[s23-p003] Part IV — Visual Tokens and Multimodal Input
+[s23-p004] Roadmap
+[s23-p005] 23
+[s24-p000] Part III — Text and Word Embedding
+[s24-p001] 24
+[s24-p002] How does a sentence become a sequence of vectors?
+[s25-p000] Text Processing Pipeline
+[s25-p001] 25
+[s25-p002] Raw sentence
+[s25-p003] Tokenizer
+[s25-p004] Tokens
+[s25-p005] Token IDs
+[s25-p006] “A student is reading a book.”
+[s25-p007] [A] [student] [is] [read] [ing] [a] [book] [.]
+[s25-p008] •  A token may be a word, subword, character, punctuation mark, or special symbol.
+[s25-p009] •  Tokenization and embedding are two different steps.
+[s26-p000] Why Use Subword Tokens?
+[s26-p001] 26
+[s26-p002] Whole words
+[s26-p003] Huge vocabulary = huge token size
+[s26-p004] Unknown names and new terms are not supported !
+[s26-p005] Characters
+[s26-p006] A word = long token sequences
+[s26-p007] Weak token-wise semantics
+[s26-p008] Subwords
+[s26-p009] Reusable pieces balance vocabulary size and sequence length/semantics
+[s26-p010] Example: playing → play + ing
+[s27-p000] Vocabulary and Token IDs
+[s27-p001] 27
+[s27-p002] Token
+[s27-p003] ID
+[s27-p004] <bos>
+[s27-p005] 1
+[s27-p006] A
+[s27-p007] 37
+[s27-p008] student
+[s27-p009] 526
+[s27-p010] reading
+[s27-p011] 1042
+[s27-p012] book
+[s27-p013] 928
+[s27-p014] IDs are addresses in a predefined token vocabulary—not semantic significance.
+[s28-p000] Token Embedding: Look up an ID from a Matrix
+[s28-p001] 28
+[s28-p002] Token ID 526
+[s28-p003] Embedding matrix E
+[s28-p004] Vector e₅₂₆
+[s28-p005] E ∈ ℝⱽˣᴰ
+[s28-p006] student → [0.21, −0.47, 0.83, …]
+[s28-p007] •  V: vocabulary size
+[s28-p008] •  D: embedding dimension
+[s28-p009] •  The embedding values are learned from data.
+[s29-p000] Why not One-Hot Vector
+[s29-p001] 29
+[s29-p002] One-hot
+[s29-p003] [0, 1, 0, 0, 0, 0, …]
+[s29-p004] •  Small representative capacity
+[s29-p005] •  Very high-dimensional vectors
+[s29-p006] •  Sparse and discrete
+[s29-p007] •  No natural semantic similarity (cosine similarity scores of vectors are all zeros)
+[s29-p008] Dense embedding
+[s29-p009] [0.70, −0.20, 0.40, …]
+[s29-p010] •  Large representative capacity
+[s29-p011] •  Flexibly low dimensional (>=2) vectors
+[s29-p012] •  Continuous vector
+[s29-p013] •  Learned during training
+[s29-p014] •  Meaningful token-wise relationships
+[s29-p015] Dense embedding converts a discrete symbol into a point in a continuous feature space.
+[s30-p000] Semantic Similarity in Embedding Space
+[s30-p001] 30
+[s30-p002] cat
+[s30-p003] dog
+[s30-p004] tiger
+[s30-p005] car
+[s30-p006] bus
+[s30-p007] book
+[s30-p008] Related words may appear close after training.
+[s30-p009] Similarity is learned from data.
+[s31-p000] Token Position Embedding and Attention Mask
+[s31-p001] 31
+[s31-p002] Why indicating token positions?
+[s31-p003] Dog bites man.   ≠   Man bites dog.
+[s31-p004] Token embedding
+[s31-p005] + Position information
+[s31-p006] Ordered sequence
+[s31-p007] Padding example
+[s31-p008] A cat sleeps . <pad> <pad>
+[s31-p009] Attention mask: [1, 1, 1, 1, 0, 0]
+[s31-p010] The mask prevents padding positions from being treated as real content.
+[s32-p000] Contextual Interaction via Self-attention
+[s32-p001] 32
+[s32-p002] bank
+[s32-p003] number
+[s32-p004] bank account
+[s32-p005] Transformer
+[s32-p006] + context
+[s32-p007] •  Initial token embeddings depend mainly on token ID.
+[s32-p008] •  Self-attention faciliates token information flowing
+[s32-p009] •  After self-attention, the representation depends on surrounding tokens.
+[s32-p010] •  The same token can express different meanings in different sentences.
+[s33-p000] Part I — RGB Image
+[s33-p001] Part II — Data Normalization
+[s33-p002] Part III — Text and Word Embedding
+[s33-p003] Part IV — Visual Tokens and Multimodal Input
+[s33-p004] Roadmap
+[s33-p005] 33
+[s34-p000] Part IV — Visual Tokens and Multimodal Input
+[s34-p001] 34
+[s34-p002] How do image and text embeddings meet inside an MLLM?
+[s35-p000] Image Patches Become Visual Tokens
+[s35-p001] 35
+[s35-p002] Flatten patch
+[s35-p003] Linear projection
+[s35-p004] Visual token
+[s35-p005] A patch is not necessarily an object or a word; context gives it meaning.
+[s36-p000] Vision Encoder and Projector
+[s36-p001] 36
+[s36-p002] Normalized image
+[s36-p003] Vision Encoder
+[s36-p004] Visual features
+[s36-p005] Projector
+[s36-p006] LLM-sized tokens
+[s36-p007] Example shapes
+[s36-p008] [1, 3, 224, 224]  →  [1, 196, 768]  →  [1, 196, 4096]
+[s36-p009] •  The vision encoder extracts visual patterns and semantics.
+[s36-p010] •  The projector adjusts the visual feature dimension to match the language model.
+[s37-p000] Complete Multimodal Input Pipeline
+[s37-p001] 37
+[s37-p002] Visual tokens + text tokens → one multimodal sequence
+[s38-p000] Shape Changing Example
+[s38-p001] 38
+[s38-p002] Image tensor
+[s38-p003] [1, 3, 224, 224] (B,C,H,W)
+[s38-p004] Vision output
+[s38-p005] [1, 196, 768] (B, N, D1)
+[s38-p006] Projected visual tokens
+[s38-p007] [1, 196, 4096] (B, N, D2)
+[s38-p008] 12 text tokens
+[s38-p009] [1, 12, 4096] (B, n, D2)
+[s38-p010] Combined sequence
+[s38-p011] [1, 208, 4096] (B, N+n, D2)
+[s38-p012] 196 visual tokens + 12 text tokens = 208 total tokens
+[s39-p000] Resolution versus Speed
+[s39-p001] 39
+[s39-p002] 224 × 224
+[s39-p003] 14 × 14 patches
+[s39-p004] 196 visual tokens
+[s39-p005] 448 × 448
+[s39-p006] 28 × 28 patches
+[s39-p007] 784 visual tokens
+[s39-p008] •  More tokens can preserve more details like small text and objects.
+[s39-p009] •  More tokens consume more computations.
+[s40-p000] Good Multimodal Input = Clear Image + Detailed Prompt
+[s40-p001] 40
+[s40-p002] Weak prompt
+[s40-p003] “Describe it.”
+[s40-p004] Stronger prompt
+[s40-p005] “Identify the three main objects.
+[s40-p006] For each, state position and visible color.
+[s40-p007] Do not infer information not shown.”
+[s40-p008] •  Use proper image resolution.
+[s40-p009] •  Avoid data augmentations that remove relevant evidence.
+[s40-p010] •  Elaborate  a specific question and the output structure.
+[s41-p000] Take-Home Messages
+[s41-p001] 42
+[s41-p002] •  RGB images are made of three color channels.
+[s41-p003] •  Preprocessing controls both the shape (data augmentation) and numerical distribution (normalization) of visual input.
+[s41-p004] •  Tokenization maps text to IDs; embedding maps IDs to vectors.
+[s41-p005] •  Image patches can be projected into visual token embeddings.
+[s41-p006] •  An MLLM processes visual and textual vectors in a shared sequence.
+[s41-p007] •  Many “model errors” are actually caused by poor input preparation.
+[s41-p008] Image / Text → Numbers → Tokens → Embeddings → MLLM
+[n4-p000] [Sources]
+[n4-p001] - Course overview and instructor-provided structure.
+[n4-p002] - Educational illustrations generated for this lecture.
+[n13-p000] [Sources]
+[n13-p001] - Course overview and instructor-provided structure.
+[n13-p002] - Educational illustrations generated for this lecture.
+[n23-p000] [Sources]
+[n23-p001] - Course overview and instructor-provided structure.
+[n23-p002] - Educational illustrations generated for this lecture.
+[n33-p000] [Sources]
+[n33-p001] - Course overview and instructor-provided structure.
+[n33-p002] - Educational illustrations generated for this lecture.
